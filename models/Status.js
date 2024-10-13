@@ -8,7 +8,7 @@ const statusSchema = new mongoose.Schema({
   backgroundColor: { type: String }, // For text status
   fontSize: { type: String },        // For text status
   fontStyle: { type: String },       // For text status: 'normal', 'bold', 'italic'
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now, expires: '24h' }
 });
 
 module.exports = mongoose.model('Status', statusSchema);
