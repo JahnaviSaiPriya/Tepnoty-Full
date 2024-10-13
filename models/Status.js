@@ -2,11 +2,13 @@ const mongoose = require('mongoose');
 
 const statusSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  mediaPath: { type: String }, // Local file path
-  type: { type: String, enum: ['image', 'video', 'text'], required: true },
-  text: { type: String },  // Only if type is 'text'
-  createdAt: { type: Date, default: Date.now, expires: '24h' },  // Automatically delete after 24 hours
+  type: { type: String, required: true }, // 'text', 'image', 'video'
+  text: { type: String },
+  mediaPath: { type: String },
+  backgroundColor: { type: String }, // For text status
+  fontSize: { type: String },        // For text status
+  fontStyle: { type: String },       // For text status: 'normal', 'bold', 'italic'
+  createdAt: { type: Date, default: Date.now }
 });
 
-const Status = mongoose.model('Status', statusSchema);
-module.exports = Status;
+module.exports = mongoose.model('Status', statusSchema);
